@@ -1,4 +1,5 @@
-# vue3_nots
+# vue3_nots vue-cli + typescript
+
 
 ## Project setup
 ```

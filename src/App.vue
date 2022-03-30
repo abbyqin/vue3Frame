@@ -1,17 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <HelloWorld msg="Welcome" v-bind="$attrs" :is-show="isOpen" :row="row"/>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
+<script lang="ts">
+import { defineComponent } from 'vue';
+import HelloWorld from './components/HelloWorld.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     HelloWorld
+  },
+  data(){
+    return{
+      isOpen: false,
+      row: { name: '王丽', study: 'Java' },
+    }
   }
-}
+});
 </script>
 
 <style>
