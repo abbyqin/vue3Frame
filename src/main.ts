@@ -1,5 +1,8 @@
 import { createApp, h } from 'vue'
 import App from './App.vue'
+import i18n from './i18n'
+import router from './router'
+import store from './store'
 
 // createApp(App).mount('#app')
 
@@ -66,7 +69,9 @@ app.component('testCb', {
     }))
   }
 })
-
+app.use(i18n)
+app.use(store)
+app.use(router)
 // mount 函数返回根组件的实例
 app.mount('#app')
 

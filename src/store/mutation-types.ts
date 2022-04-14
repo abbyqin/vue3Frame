@@ -1,0 +1,1 @@
+export const LOCAL_MUTATION = 'LOCAL_MUTATION'
