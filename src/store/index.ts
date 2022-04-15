@@ -2,12 +2,13 @@
 import { createStore } from "vuex";
 import moduleA from "./modules/moduleA";
 import moduleB from "./modules/moduleB";
+import user from "./modules/user"
 
 const myPlugin = (store: any) => {
   store.subscribe((mutatuin: any, state: any) => {
     // 每次mutation之后调用
     // mutation的格式为{type, payload}
-    console.log('plugin : ', mutatuin, state)
+    // console.log('plugin : ', mutatuin, state)
   })
 }
 
@@ -46,7 +47,8 @@ const store = createStore({
   },
   modules: {
     moduleA: moduleA,
-    moduleB: moduleB
+    moduleB: moduleB,
+    user: user
   },
   plugins: [myPlugin]
 })

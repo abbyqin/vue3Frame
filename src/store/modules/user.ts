@@ -1,4 +1,6 @@
+import apis from "@/axios/apis";
 import User from "@/entities/User"
+import { cookies } from "@/utils/storage";
 
 export interface UserState {
   token: string,
@@ -16,22 +18,27 @@ const user = {
   mutations: {
     SET_TOKEN: (state: UserState, token: string) => {
       state.token = token
-      // cookies.set(TOKEN_KEY, token);
-    }
-  },
-  getters: {
-    doubleCount (state: { count: number }) {
-      return state.count*2
+      cookies.set(TOKEN_KEY, token);
+    },
+    SET_USER: (state: UserState, user: User | null) => {
+      state.user = user
     }
   },
   actions:{
-    increment (context: { commit: (arg0: string) => void }, payLoad: { amount: any }){
-      console.log('moduleA actions context', context)
-      console.log('moduleA actions payload : ', payLoad.amount)
-      setTimeout(()=>{
-        context.commit('increment')
-      },3000)
-    },
+    login ( context: { commit: (arg0: string, arg1: string | User | null) => void; }, data: any): Promise<User | null> {
+      return new Promise( (resolve, reject) => {
+        console.log('store login : ', data)
+        apis.login(data).then((user: User)=>{
+          context.commit('SET_TOKEN', user.token || '')
+          context.commit('SET_USER', user)
+          resolve(user)
+        }).catch((error) => {
+          context.commit('SET_TOKEN', '')
+          context.commit('SET_USER', null)
+          reject(error)
+        })
+      })
+    }
   }
 }
 

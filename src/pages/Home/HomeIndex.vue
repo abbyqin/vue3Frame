@@ -1,17 +1,13 @@
 <template>
   <div @click="pushWithQuery('nice')">{{ $t('home.country') }}</div>
-  <Granphic v-if="false" :data="graphic"/>
   <button @click="changeStore">click me</button>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import Granphic from '@/components/Graphic/GraphicIndex.vue'
-import ModuleInfo from '@/entities/ModuleInfo'
+import { defineComponent } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { mapActions, mapState, useStore } from 'vuex'
 export default defineComponent({
   components:{
-    Granphic
   },
   computed: {
     ...mapState({
@@ -22,8 +18,6 @@ export default defineComponent({
     },
   },
   setup(){
-    const allData = (window as any).allData;
-    const graphic = ref<ModuleInfo | null>(allData.modules[4] || null)
     // console.log('graphic : ', graphic)
     console.log('useRoute', useRoute().params)
     // const route = useRoute()
@@ -37,10 +31,8 @@ export default defineComponent({
       })
     }
     const store = useStore()
-    // console.log('store : ', store)
     return{
       store,
-      graphic,
       pushWithQuery
     }
   },
@@ -52,7 +44,6 @@ export default defineComponent({
     // this.actionA().then(()=>{
     //   console.log('hello')
     // })
-    // console.log('getters : ', this.store.getters.doneTodos)
   },
   methods:{
     ...mapActions('moduleA', [
