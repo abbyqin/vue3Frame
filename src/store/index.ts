@@ -27,10 +27,10 @@ const store = createStore({
     }
   },
   actions: {
-    actionA ({ commit }) {
+    actionA (context: any) {
       return new Promise<void>( (resolve, reject) => {
         setTimeout(()=>{
-          commit('incrementAll')
+          context.commit('incrementAll')
           resolve()
         },3000)
       })
@@ -40,7 +40,7 @@ const store = createStore({
     doneTodos: (state: any)=>{
       return state.todos.filter((todo: { done: any; })=>todo.done)
     },
-    doneTodoCount: (state, getters: any)=>{
+    doneTodoCount: (state: any, getters: any)=>{
       return getters.doneTodos.length
     }
   },

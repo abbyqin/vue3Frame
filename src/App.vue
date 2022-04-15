@@ -3,6 +3,7 @@
     <dt>切换语言</dt>
     <dd v-for="item in languages" :key="item.key" @click="changLanguage(item.key)">{{ item.label }}</dd>
   </div>
+  <login-view />
   <router-link class="link" to="/">HOME</router-link>
   <router-link class="link" to="/about">ABOUT</router-link>
   <router-link class="link" to="/user/Jack">USER</router-link>
@@ -13,9 +14,11 @@
 <script lang="ts">
 import { defineComponent, getCurrentInstance } from 'vue';
 import { useI18n } from 'vue-i18n';
+import LoginView from '@/fragment/login-view.vue'
 export default defineComponent({
   name: 'App',
   components: {
+    LoginView
   },
   setup(){
     const { ctx } = getCurrentInstance() as any
