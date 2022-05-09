@@ -52,7 +52,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -63,5 +63,6 @@ export default defineComponent({
 }
 .link{
   margin: 10px;
+  color: $brandColor;
 }
 </style>
